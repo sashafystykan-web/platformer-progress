@@ -10,32 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Geode SDK
-        run: |
-          git clone https://github.com/geode-sdk/geode geode-sdk
-          echo "GEODE_SDK=$(pwd)/geode-sdk" >> $GITHUB_ENV
-
-      - name: Install dependencies
-        run: sudo apt-get install -y cmake ninja-build gcc-multilib g++-multilib
-
-      - name: Download Android NDK
-        run: |
-          wget -q https://dl.google.com/android/repository/android-ndk-r25c-linux.zip
-          unzip -q android-ndk-r25c-linux.zip
-          echo "ANDROID_NDK=$(pwd)/android-ndk-r25c" >> $GITHUB_ENV
-
       - name: Build mod
-        run: |
-          cmake -B build \
-            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
-            -DANDROID_ABI=arm64-v8a \
-            -DANDROID_PLATFORM=android-21 \
-            -DGEODE_SDK=$GEODE_SDK \
-            -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
-
-      - name: Upload .geode file
-        uses: actions/upload-artifact@v4
+        uses: geode-sdk/build-geode-mod@main
         with:
-          name: platformer-progress
-          path: build/*.geode
+          sdk: nightly
+          target: android64
