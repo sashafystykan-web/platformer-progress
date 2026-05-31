@@ -1,0 +1,40 @@
+{
+  "geode": "3.x",
+  "gd": {
+    "win": "2.206",
+    "mac": "2.206",
+    "android": "2.206"
+  },
+  "id": "yourname.platformer-progress",
+  "name": "Platformer Progress",
+  "version": "1.0.0",
+  "developer": "YourName",
+  "description": "Automatically saves and restores your progress (checkpoints, best %, attempts) in Geometry Dash platformer levels.",
+  "links": {
+    "source": "https://github.com/yourname/platformer-progress"
+  },
+  "settings": {
+    "save-interval": {
+      "name": "Интервал сохранения (%)",
+      "description": "Каждые N процентов прогресс записывается в файл.",
+      "type": "int",
+      "default": 1,
+      "min": 1,
+      "max": 10
+    },
+    "max-checkpoints": {
+      "name": "Максимум чекпоинтов на уровень",
+      "description": "Старые чекпоинты удаляются, когда лимит превышен.",
+      "type": "int",
+      "default": 200,
+      "min": 10,
+      "max": 1000
+    },
+    "show-notifications": {
+      "name": "Показывать уведомления",
+      "description": "Выводить всплывающее сообщение при сохранении/сбросе прогресса.",
+      "type": "bool",
+      "default": true
+    }
+  }
+}
